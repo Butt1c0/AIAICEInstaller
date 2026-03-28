@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  @apply bg-gray-950 text-gray-100;
+  margin: 0;
+}
+
+/* xterm.js container */
+.xterm-container {
+  @apply rounded-b-lg overflow-hidden;
+  background: #0d1117;
+}
+.xterm-container .xterm {
+  padding: 12px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-gray-900;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-600 rounded;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-500;
+}
+
+/* ANT log output */
+.log-output {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 12px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+/* Wizard step connector */
+.step-line {
+  @apply flex-1 h-0.5 bg-gray-700;
+}
+.step-line.active {
+  @apply bg-blue-500;
+}
