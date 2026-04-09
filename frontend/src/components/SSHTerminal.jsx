@@ -100,7 +100,8 @@ const SSHTerminal = forwardRef(function SSHTerminal({ envId, onStatusChange, rea
     const params = new URLSearchParams({ token });
     if (envId) params.set('envId', envId);
 
-    const wsUrl = `ws://${window.location.host}/ws/terminal?${params}`;
+    const wsProto = window.location.protocol === 'https:' ? 'wss' : 'ws';
+    const wsUrl = `${wsProto}://${window.location.host}/aiaice/ws/terminal?${params}`;
     const ws = new WebSocket(wsUrl);
     wsRef.current = ws;
 

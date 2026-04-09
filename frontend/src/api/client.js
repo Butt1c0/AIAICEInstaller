@@ -1,7 +1,9 @@
 import axios from 'axios';
 
+const contextRoot = import.meta.env.BASE_URL.replace(/\/$/, '');
+
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: `${contextRoot}/api`,
   timeout: 120000,
 });
 
@@ -19,7 +21,7 @@ api.interceptors.response.use(
     if (err.response?.status === 401) {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
-      window.location.href = '/login';
+      window.location.href = `${contextRoot}/login`;
     }
     return Promise.reject(err);
   }

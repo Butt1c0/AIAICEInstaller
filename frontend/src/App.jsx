@@ -11,7 +11,7 @@ function RequireAuth({ children }) {
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/aiaice">
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route

@@ -28,7 +28,8 @@ export default function AntDeployStep({ ctx, updateCtx, onNext, onBack }) {
     const params = new URLSearchParams({ token });
     if (ctx.environmentId) params.set('envId', ctx.environmentId);
 
-    const wsUrl = `ws://${window.location.host}/ws/deploy?${params}`;
+    const wsProto = window.location.protocol === 'https:' ? 'wss' : 'ws';
+    const wsUrl = `${wsProto}://${window.location.host}/aiaice/ws/deploy?${params}`;
     const ws = new WebSocket(wsUrl);
     wsRef.current = ws;
 

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                             http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+    <display-name>AIA ICE Installer</display-name>
+
+    <!-- Config file location (relative to domain directory) -->
+    <context-param>
+        <param-name>configFilePath</param-name>
+        <param-value>aiaice-config.json</param-value>
+    </context-param>
+
+    <!-- JWT Auth Filter -->
+    <filter>
+        <filter-name>AuthFilter</filter-name>
+        <filter-class>cr.go.ice.aia.installer.filter.AuthFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/api/*</url-pattern>
+    </filter-mapping>
+
+    <!-- Multipart config for file uploads (500 MB max) -->
+    <servlet>
+        <servlet-name>javax.ws.rs.core.Application</servlet-name>
+        <multipart-config>
+            <max-file-size>524288000</max-file-size>
+            <max-request-size>524288000</max-request-size>
+            <file-size-threshold>1048576</file-size-threshold>
+        </multipart-config>
+    </servlet>
+
+    <!-- SPA: forward non-API, non-asset requests to index.html -->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/index.html</location>
+    </error-page>
+
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+</web-app>
